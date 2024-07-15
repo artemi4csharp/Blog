@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock %}
+{% block container %}
+<h1>All posts</h1>
+{% for post in posts %}
+<article>
+    <h2><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+    <p>{{ post.date_posted.strftime('%Y-%M-%D') }}</p>
+    <a href="{{ url_for('update_post', post_id=post.id) }}">Edit</a>
+    <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post">
+        <button>Delete</button>
+    </form>
+</article>
+{% endblock %}
